@@ -1,4 +1,4 @@
-# ignite-frame
+# Ignite Frame
 
 > Iframe integration for displaying Ignite Dashboards on internal pages
 
@@ -10,22 +10,26 @@
 npm install --save ignite-frame
 ```
 
+or
+
+```bash
+yarn add ignite-frame
+```
+
 ## Usage
 
 ```tsx
-import * as React from 'react'
+import * as React from "react";
 
-import MyComponent from 'ignite-frame'
+import IgniteFrame from "ignite-frame";
 
 class Example extends React.Component {
-  render () {
-    return (
-      <MyComponent />
-    )
-  }
+    render() {
+        return <IgniteFrame />;
+    }
 }
 ```
 
 ## License
 
-MIT © [Ignite Procurement](https://github.com/Ignite Procurement)
+MIT © [Ignite Procurement](https://www.ignite.no)
