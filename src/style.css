@@ -1,0 +1,6 @@
+iframe {
+    width: 1px;
+    height: 100%;
+    min-width: 100%;
+    *width: 100%;
+}
