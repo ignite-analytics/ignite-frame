@@ -36,8 +36,8 @@ class Example extends React.Component {
 /**
  *  IFrame wrapper for rendring Ignite Dashboards into an internal react application
  *
- *  @property {string}          token:          A valid JWT Token to authenticate against the Ignite Platform
- *  @property {IFrameOptions}   options:
+ *  @property {string}          token:      A valid JWT Token to authenticate against the Ignite Platform
+ *  @property {IFrameOptions}   options:    A options object that contains the configuration for the iFrame
  *
  */
 ```
@@ -48,10 +48,10 @@ class Example extends React.Component {
 /**
  *  IFrame options interface
  *
- *  @property {number}          departmentId:   The department id that owns the dashboard
- *  @property {number}          dashboardId:    The id of the dashboard that should be displayed inside the iFrame
- *  @property {string}          background?:    A css compatible color string
- *  @property {string}          baseUrl?:       The baseUrl that should be used
+ *  @property {number}  departmentId:   The department id that owns the dashboard
+ *  @property {number}  dashboardId:    The id of the dashboard that should be displayed inside the iFrame
+ *  @property {string}  background?:    A css compatible color string
+ *  @property {string}  baseUrl?:       The baseUrl that should be used
  *
  */
 ```
