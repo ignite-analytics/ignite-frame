@@ -1,16 +1,17 @@
-import * as React from "react";
+import * as React from 'react'
 
-import "./style.css";
-import { IFrameOptions } from "./interfaces";
+import { IFrameOptions } from './interfaces'
 
 interface Props {
-    token: string;
-    options: IFrameOptions;
+  token: string;
+  options: IFrameOptions;
 }
 
 interface State {
-    tokenSet: boolean;
+  tokenSet: boolean;
 }
+
+const defaultBaseUrl = 'https://app.ignite.no'
 
 /**
  *  IFrame wrapper for rendring Ignite Dashboards into an internal react application
@@ -21,64 +22,46 @@ interface State {
  */
 
 class IgniteFrame extends React.Component<Props, State> {
-    static defaultProps = {
+  /**
+   * Sends the token to the iFrame
+   */
+  handleLoad = event => {
+    // @ts-ignore
+    const iFrameWindow = event.currentTarget.contentWindow
+
+    iFrameWindow.postMessage(
+      JSON.stringify({
+        token: this.props.token,
         options: {
-            baseUrl: "https://app.ignite.no",
+          baseUrl: defaultBaseUrl,
+          ...this.props.options,
         },
-    };
+      }),
+      '*',
+    )
+  }
 
-    url: string = `${this.props.options.baseUrl}/departments/${this.props.options.departmentId}/dashboards/${
-        this.props.options.dashboardId
-    }/?embedded`;
-
-    state: State = { tokenSet: false };
-
-    componentWillMount() {
-        window.addEventListener("load", this.handleLoad);
-    }
-
-    /**
-     * Updating component if the token is sent
-     */
-    shouldComponentUpdate(_nextProps: Props, nextState: State) {
-        let shouldUpdate: boolean = this.state.tokenSet !== nextState.tokenSet;
-        if (shouldUpdate) {
-            // @ts-ignore
-            document.getElementById("dashboardIFrame").src += "";
-        }
-        return shouldUpdate;
-    }
-
-    /**
-     * Sends the token to the iFrame
-     */
-    handleLoad = () => {
-        // @ts-ignore
-        let iFrameWindow = document.getElementById("dashboardIFrame").contentWindow;
-
-        iFrameWindow.postMessage(
-            JSON.stringify({
-                token: this.props.token,
-                options: this.props.options,
-            }),
-            "*"
-        );
-        this.setState({ tokenSet: true });
-    };
-
-    render() {
-        return (
-            <iframe
-                id="dashboardIFrame"
-                src={this.url}
-                height="700"
-                frameBorder={0}
-                scrolling="yes"
-                marginHeight={0}
-                marginWidth={0}
-            />
-        );
-    }
+  render() {
+    return (
+      <iframe
+        src={`${this.props.options.baseUrl || defaultBaseUrl}/departments/${
+          this.props.options.departmentId
+        }/dashboards/${this.props.options.dashboardId}/?embedded`}
+        onLoad={this.handleLoad}
+        height="700"
+        frameBorder={0}
+        scrolling="yes"
+        marginHeight={0}
+        marginWidth={0}
+        style={{
+          width: '1px',
+          height: '100%',
+          minWidth: '100%',
+          '*width': '100%',
+        }}
+      />
+    )
+  }
 }
 
-export default IgniteFrame;
+export default IgniteFrame
