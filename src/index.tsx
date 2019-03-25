@@ -1,17 +1,17 @@
-import * as React from 'react'
+import * as React from "react";
 
-import { IFrameOptions } from './interfaces'
+import { IFrameOptions } from "./interfaces";
 
 interface Props {
-  token: string;
-  options: IFrameOptions;
+    token: string;
+    options: IFrameOptions;
 }
 
 interface State {
-  tokenSet: boolean;
+    tokenSet: boolean;
 }
 
-const defaultBaseUrl = 'https://app.ignite.no'
+const defaultBaseUrl = "https://app.ignite.no";
 
 /**
  *  IFrame wrapper for rendring Ignite Dashboards into an internal react application
@@ -22,46 +22,46 @@ const defaultBaseUrl = 'https://app.ignite.no'
  */
 
 class IgniteFrame extends React.Component<Props, State> {
-  /**
-   * Sends the token to the iFrame
-   */
-  handleLoad = event => {
-    // @ts-ignore
-    const iFrameWindow = event.currentTarget.contentWindow
+    /**
+     * Sends the token to the iFrame
+     */
+    handleLoad = (event: React.SyntheticEvent<HTMLIFrameElement>) => {
+        // @ts-ignore
+        const iFrameWindow = event.currentTarget.contentWindow;
 
-    iFrameWindow.postMessage(
-      JSON.stringify({
-        token: this.props.token,
-        options: {
-          baseUrl: defaultBaseUrl,
-          ...this.props.options,
-        },
-      }),
-      '*',
-    )
-  }
+        iFrameWindow &&
+            iFrameWindow.postMessage(
+                JSON.stringify({
+                    token: this.props.token,
+                    options: {
+                        baseUrl: defaultBaseUrl,
+                        ...this.props.options,
+                    },
+                }),
+                "*"
+            );
+    };
 
-  render() {
-    return (
-      <iframe
-        src={`${this.props.options.baseUrl || defaultBaseUrl}/departments/${
-          this.props.options.departmentId
-        }/dashboards/${this.props.options.dashboardId}/?embedded`}
-        onLoad={this.handleLoad}
-        height="700"
-        frameBorder={0}
-        scrolling="yes"
-        marginHeight={0}
-        marginWidth={0}
-        style={{
-          width: '1px',
-          height: '100%',
-          minWidth: '100%',
-          '*width': '100%',
-        }}
-      />
-    )
-  }
+    render() {
+        return (
+            <iframe
+                src={`${this.props.options.baseUrl || defaultBaseUrl}/departments/${
+                    this.props.options.departmentId
+                }/dashboards/${this.props.options.dashboardId}/?embedded`}
+                onLoad={this.handleLoad}
+                height="700"
+                frameBorder={0}
+                scrolling="yes"
+                marginHeight={0}
+                marginWidth={0}
+                style={{
+                    width: "1px",
+                    height: "100%",
+                    minWidth: "100%",
+                }}
+            />
+        );
+    }
 }
 
-export default IgniteFrame
+export default IgniteFrame;
