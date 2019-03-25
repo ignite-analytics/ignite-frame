@@ -43,11 +43,12 @@ class IgniteFrame extends React.Component<Props, State> {
     };
 
     render() {
+        const { options, token, ...rest } = this.props
         return (
             <iframe
-                src={`${this.props.options.baseUrl || defaultBaseUrl}/departments/${
-                    this.props.options.departmentId
-                }/dashboards/${this.props.options.dashboardId}/?embedded`}
+                src={`${options.baseUrl || defaultBaseUrl}/departments/${
+                    options.departmentId
+                }/dashboards/${options.dashboardId}/?embedded`}
                 onLoad={this.handleLoad}
                 height="700"
                 frameBorder={0}
@@ -59,6 +60,7 @@ class IgniteFrame extends React.Component<Props, State> {
                     height: "100%",
                     minWidth: "100%",
                 }}
+                {...rest}
             />
         );
     }
