@@ -1,6 +1,5 @@
 import * as React from 'react'
 
-import './style.css'
 import { IFrameOptions } from './interfaces'
 
 interface Props {
@@ -21,27 +20,12 @@ interface State {
  */
 
 class IgniteFrame extends React.Component<Props, State> {
-  constructor() {
-    super()
-
-    this.iframe = React.createRef()
-  }
-
-  /**
-   * Updating component if the token is sent
-   */
-  componentDidUpdate(prevProps: Props) {
-    if (this.props.token !== prevProps.token) {
-      this.iframe.src += ''
-    }
-  }
-
   /**
    * Sends the token to the iFrame
    */
-  handleLoad = () => {
+  handleLoad = event => {
     // @ts-ignore
-    let iFrameWindow = this.iframe.contentWindow
+    const iFrameWindow = event.currentTarget.contentWindow
 
     iFrameWindow.postMessage(
       JSON.stringify({
@@ -58,7 +42,6 @@ class IgniteFrame extends React.Component<Props, State> {
   render() {
     return (
       <iframe
-        ref={this.iframe}
         src={`${this.props.options.baseUrl}/departments/${
           this.props.options.departmentId
         }/dashboards/${this.props.options.dashboardId}/?embedded`}
@@ -68,6 +51,12 @@ class IgniteFrame extends React.Component<Props, State> {
         scrolling="yes"
         marginHeight={0}
         marginWidth={0}
+        style={{
+          width: '1px',
+          height: '100%',
+          'min-width': '100%',
+          '*width': '100%',
+        }}
       />
     )
   }
