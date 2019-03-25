@@ -11,6 +11,8 @@ interface State {
   tokenSet: boolean;
 }
 
+const defaultBaseUrl = 'https://app.ignite.no'
+
 /**
  *  IFrame wrapper for rendring Ignite Dashboards into an internal react application
  *
@@ -31,7 +33,7 @@ class IgniteFrame extends React.Component<Props, State> {
       JSON.stringify({
         token: this.props.token,
         options: {
-          baseUrl: 'https://app.ignite.no',
+          baseUrl: defaultBaseUrl,
           ...this.props.options,
         },
       }),
@@ -42,7 +44,7 @@ class IgniteFrame extends React.Component<Props, State> {
   render() {
     return (
       <iframe
-        src={`${this.props.options.baseUrl}/departments/${
+        src={`${this.props.options.baseUrl || defaultBaseUrl}/departments/${
           this.props.options.departmentId
         }/dashboards/${this.props.options.dashboardId}/?embedded`}
         onLoad={this.handleLoad}
