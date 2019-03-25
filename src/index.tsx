@@ -51,6 +51,7 @@ class IgniteFrame extends React.Component<Props, State> {
                 }/dashboards/${options.dashboardId}/?embedded`}
                 onLoad={this.handleLoad}
                 height="700"
+                title="Embedded Ignite Procurement dashboard"
                 frameBorder={0}
                 scrolling="yes"
                 marginHeight={0}
