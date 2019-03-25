@@ -56,7 +56,7 @@ class IgniteFrame extends React.Component<Props, State> {
         style={{
           width: '1px',
           height: '100%',
-          'min-width': '100%',
+          minWidth: '100%',
           '*width': '100%',
         }}
       />
