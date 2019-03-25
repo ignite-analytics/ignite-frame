@@ -26,9 +26,7 @@ class IgniteFrame extends React.Component<Props, State> {
      * Sends the token to the iFrame
      */
     handleLoad = (event: React.SyntheticEvent<HTMLIFrameElement>) => {
-        // @ts-ignore
         const iFrameWindow = event.currentTarget.contentWindow;
-
         iFrameWindow &&
             iFrameWindow.postMessage(
                 JSON.stringify({
@@ -43,12 +41,12 @@ class IgniteFrame extends React.Component<Props, State> {
     };
 
     render() {
-        const { options, token, ...rest } = this.props
+        const { options, token, ...rest } = this.props;
         return (
             <iframe
-                src={`${options.baseUrl || defaultBaseUrl}/departments/${
-                    options.departmentId
-                }/dashboards/${options.dashboardId}/?embedded`}
+                src={`${options.baseUrl || defaultBaseUrl}/departments/${options.departmentId}/dashboards/${
+                    options.dashboardId
+                }/?embedded`}
                 onLoad={this.handleLoad}
                 height="700"
                 title="Embedded Ignite Procurement dashboard"
