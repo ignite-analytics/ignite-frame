@@ -1,6 +1,6 @@
 {
     "name": "ignite-frame",
-    "version": "1.2.2",
+    "version": "1.2.3",
     "description": "Iframe integration for displaying Ignite Dashboards on internal pages",
     "author": "Ignite Procurement",
     "license": "MIT",
