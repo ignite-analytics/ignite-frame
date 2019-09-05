@@ -1,6 +1,6 @@
 {
     "name": "ignite-frame",
-    "version": "1.2.3",
+    "version": "1.2.4",
     "description": "Iframe integration for displaying Ignite Dashboards on internal pages",
     "author": "Ignite Procurement",
     "license": "MIT",
@@ -23,8 +23,7 @@
     },
     "dependencies": {
         "react": "^16.4.1",
-        "react-dom": "^16.4.1",
-        "react-scripts": "^1.1.4"
+        "react-dom": "^16.4.1"
     },
     "peerDependencies": {
         "prop-types": "^15.5.4",
@@ -43,6 +42,7 @@
         "prettier": "1.16.4",
         "react": "^16.4.1",
         "react-dom": "^16.4.1",
+        "react-scripts": "^1.1.4",
         "react-scripts-ts": "^2.16.0",
         "rollup": "^0.62.0",
         "rollup-plugin-babel": "^3.0.7",
