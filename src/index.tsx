@@ -29,13 +29,16 @@ class IgniteFrame extends React.Component<Props, State> {
         const iFrameWindow = event.currentTarget.contentWindow;
         iFrameWindow &&
             iFrameWindow.postMessage(
-                JSON.stringify({
-                    token: this.props.token,
-                    options: {
-                        baseUrl: defaultBaseUrl,
-                        ...this.props.options,
+                [
+                    "setData",
+                    {
+                        token: this.props.token,
+                        options: {
+                            baseUrl: defaultBaseUrl,
+                            ...this.props.options,
+                        },
                     },
-                }),
+                ],
                 "*"
             );
     };
