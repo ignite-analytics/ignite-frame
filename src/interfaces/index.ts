@@ -13,4 +13,5 @@ export interface IFrameOptions {
     dashboardId: number;
     background?: string;
     baseUrl?: string;
+    tenant: string;
 }

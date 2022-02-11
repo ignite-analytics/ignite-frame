@@ -14,6 +14,7 @@ export default class App extends Component {
                         dashboardId: process.env.REACT_APP_DASHBOARD_ID,
                         background: "rgb(241, 241, 241)",
                         hideTitle: false,
+                        tenant: "igniteprocurement",
                         baseUrl: "http://localhost:3000",
                     }}
                 />
